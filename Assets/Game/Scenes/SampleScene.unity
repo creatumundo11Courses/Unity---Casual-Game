@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 133267089}
   - component: {fileID: 133267088}
   - component: {fileID: 133267087}
+  - component: {fileID: 133267090}
   m_Layer: 0
   m_Name: RCollision
   m_TagString: Untagged
@@ -264,6 +265,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133267085}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &133267090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133267085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2ebb21a66c9b748876856b51e80710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  OnCollisionEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &569585158
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12135379, y: -0.00000001709901, z: 0.0000000020904798, w: 0.9926093}
+  m_LocalRotation: {x: 0.12135379, y: -0.000000017079222, z: 0.0000000020880602, w: 0.9926093}
   m_LocalPosition: {x: 0, y: 13.940001, z: -49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -872,7 +894,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359971587}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12135379, y: -0.00000001709901, z: 0.0000000020904798, w: 0.9926093}
+  m_LocalRotation: {x: 0.12135379, y: -0.000000017079222, z: 0.0000000020880602, w: 0.9926093}
   m_LocalPosition: {x: 0, y: 13.940001, z: -49.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
