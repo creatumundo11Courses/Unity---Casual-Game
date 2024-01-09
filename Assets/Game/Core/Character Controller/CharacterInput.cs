@@ -34,8 +34,8 @@ public interface IInput
 public class PlayerInput : IInput
 {
     private InputListenerSO _inputListener;
-    private CharacterController _player;
-    public PlayerInput(InputListenerSO inputListenet, CharacterController player)
+    private CharacterControllerPlayer _player;
+    public PlayerInput(InputListenerSO inputListenet, CharacterControllerPlayer player)
     {
         _inputListener = inputListenet;
         _player = player;
