@@ -319,6 +319,23 @@ MonoBehaviour:
   OnTriggerEnterEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &489612221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3250969594520352151, guid: 226945bdafabf854485f7001188e1948, type: 3}
+  m_PrefabInstance: {fileID: 4243927851021958256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &489612229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489612221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d2aa0b61f016d44ac5b93e6ba17373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &569585158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,10 +1418,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8034755983283898215, guid: 226945bdafabf854485f7001188e1948, type: 3}
+      propertyPath: _inputListener
+      value: 
+      objectReference: {fileID: 11400000, guid: 1657b77f34230d04084f97c8047b54d9, type: 2}
+    - target: {fileID: 8034755983283898215, guid: 226945bdafabf854485f7001188e1948, type: 3}
+      propertyPath: _characterInput
+      value: 
+      objectReference: {fileID: 489612229}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3250969594520352151, guid: 226945bdafabf854485f7001188e1948, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 489612229}
   m_SourcePrefab: {fileID: 100100000, guid: 226945bdafabf854485f7001188e1948, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

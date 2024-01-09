@@ -9,17 +9,20 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private CharacterMove _characterMove;
     [SerializeField]
-    private InputListenerSO _input;
+    private CharacterInput _characterInput;
+    [SerializeField]
+    private InputListenerSO _inputListener;
     private Vector3 _desiredMovementV;
     void Start()
     {
-        _input.OnMoveEvent += Move;
+        IInput input = new PlayerInput(_inputListener, this);
+        _characterInput.Initialize(input);
     }
     private void Update()
     {
         _characterMove.Move(_desiredMovementV);
     }
-    private void Move(Vector2 moveV)
+    public void Move(Vector2 moveV)
     {
         _desiredMovementV = new Vector3(moveV.x, 0 , moveV.y);
     }
