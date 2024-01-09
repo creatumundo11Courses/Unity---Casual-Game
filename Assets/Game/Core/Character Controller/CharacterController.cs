@@ -7,27 +7,20 @@ using UnityEngine.InputSystem;
 public class CharacterController : MonoBehaviour
 {
     [SerializeField]
+    private CharacterMove _characterMove;
+    [SerializeField]
     private InputListenerSO _input;
-    [SerializeField]
-    private float _forwardSpeed;
-    [SerializeField]
-    private float _horizontalSpeed;
-    private Vector2 _desiredMovementV;
+    private Vector3 _desiredMovementV;
     void Start()
     {
         _input.OnMoveEvent += Move;
     }
     private void Update()
     {
-        Vector3 movementV = new Vector3(_desiredMovementV.x,0, _desiredMovementV.y);
-        movementV.Normalize();
-        movementV.z *= _forwardSpeed;
-        movementV.x *= _horizontalSpeed;
-        movementV *= Time.deltaTime;
-        transform.Translate(movementV);
+        _characterMove.Move(_desiredMovementV);
     }
-    private void Move(Vector2 vector)
+    private void Move(Vector2 moveV)
     {
-        _desiredMovementV = vector;
+        _desiredMovementV = new Vector3(moveV.x, 0 , moveV.y);
     }
 }
