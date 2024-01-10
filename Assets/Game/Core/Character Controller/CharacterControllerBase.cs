@@ -8,11 +8,17 @@ public abstract class CharacterControllerBase : LivingEntity
     private CharacterMove _characterMove;
     [SerializeField]
     protected CharacterInput _characterInput;
+    [SerializeField]
+    protected LayerMask _detectionMask;
+    [SerializeField]
+    protected float _radius;
+
     private Vector3 _desiredMovementV;
 
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         OnInitialize();
     }
 

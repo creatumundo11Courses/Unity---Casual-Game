@@ -55,3 +55,31 @@ public class PlayerInput : IInput
         
     }
 }
+
+public class IAInput : IInput
+{
+    private CharacterControllerIA _characterController;
+    public IAInput(CharacterControllerIA characterControllerIA)
+    {
+        _characterController = characterControllerIA;
+    }
+    public void Initialize()
+    {
+        _characterController.Target = null;
+    }
+
+    public void Terminate()
+    {
+        
+    }
+
+    public void Update()
+    {
+        if (_characterController.Target == null) return;
+
+        Vector3 direction = (_characterController.Target.position - _characterController.transform.position).normalized;
+        direction.y = 0;
+        Vector2 inputV = new Vector2(direction.x, direction.z);
+        _characterController.Move(inputV);
+    }
+}

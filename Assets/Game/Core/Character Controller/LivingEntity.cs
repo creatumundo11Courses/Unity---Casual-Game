@@ -12,7 +12,9 @@ public class LivingEntity : MonoBehaviour
 
     public bool IsDead { get => _health <= 0; }
 
-    private void Start()
+    public event Action<LivingEntity> OnDead;
+
+    public virtual void Start()
     {
         _health = _maxHealth;
     }
@@ -29,6 +31,9 @@ public class LivingEntity : MonoBehaviour
 
     }
 
-    protected virtual void Dead() { }
+    protected virtual void Dead() 
+    {
+       OnDead.Invoke(this);
+    }
     
 }
