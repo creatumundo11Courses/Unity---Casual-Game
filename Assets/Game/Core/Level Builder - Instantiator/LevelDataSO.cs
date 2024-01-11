@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,5 +6,13 @@ using UnityEngine;
 public class LevelDataSO : ScriptableObject
 {
     [SerializeField]
-    private List<GameObject> LevelParts = new List<GameObject>();
+    private List<LevelData> LevelParts = new List<LevelData>();
+}
+[Serializable]
+public class LevelData
+{
+    public GameObject PrefabGO;
+    public Vector3 Position;
+    public Quaternion Rotation;
+    public Vector3 Scale;
 }
