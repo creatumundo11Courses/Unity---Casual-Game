@@ -683,6 +683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1646966492265182822}
   - component: {fileID: 3546903294036421752}
+  - component: {fileID: 1952196865842991685}
   m_Layer: 0
   m_Name: Multiplier Colisionable
   m_TagString: Untagged
@@ -725,6 +726,18 @@ MonoBehaviour:
   _collisionableMultipliers:
   - {fileID: 4370104623053931905}
   - {fileID: 5081331732339751129}
+--- !u!114 &1952196865842991685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792537341444715205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38a811a9191c544baf7ee5eaeadb1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8186478478445882183
 GameObject:
   m_ObjectHideFlags: 0

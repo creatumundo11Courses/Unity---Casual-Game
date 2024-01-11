@@ -6,7 +6,12 @@ using UnityEngine;
 public class LevelDataSO : ScriptableObject
 {
     [SerializeField]
-    private List<LevelData> LevelParts = new List<LevelData>();
+    private string _levelName;
+    public string LevelName { get => _levelName; set => _levelName = value; }
+    [SerializeField]
+    private List<LevelData> _levelParts = new List<LevelData>();
+    public List<LevelData> LevelParts { get => _levelParts; set => _levelParts = value; }
+    
 }
 [Serializable]
 public class LevelData
