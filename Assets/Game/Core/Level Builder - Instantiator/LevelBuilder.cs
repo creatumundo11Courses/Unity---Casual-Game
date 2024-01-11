@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -43,7 +45,7 @@ public class LevelBuilderEditor : Editor
         base.OnInspectorGUI();
         _levelBuilder = (LevelBuilder)target;
 
-        if (GUILayout.Button("Save LevelData")) 
+        if (GUILayout.Button("Save LevelData") && _levelBuilder.LevelDataSO != null) 
         {
             _levelBuilder.ClearData();
             LevelPart[] allGOInChildren = _levelBuilder.GetComponentsInChildren<LevelPart>();
@@ -58,10 +60,37 @@ public class LevelBuilderEditor : Editor
             }
 
             _levelBuilder.SetLevelName(_levelBuilder.LevelName);
+            EditorUtility.SetDirty(_levelBuilder.LevelDataSO);
+            EditorUtility.DisplayDialog("LevelBuilder", "has been successfully saved", "ok");
 
         }
-        if (GUILayout.Button("Edit LevelData")) { Debug.Log("Se han editado los datos"); }
-        if (GUILayout.Button("Delete LevelData")) { Debug.Log("Se han eliminado los datos"); }
+        if (GUILayout.Button("Edit LevelData") && _levelBuilder.LevelDataSO != null) 
+        {
+            List<LevelData> allLevelParts = _levelBuilder.LevelDataSO.LevelParts;
+            if (allLevelParts.Count == 0) return;
+
+            foreach (LevelData lvlD in allLevelParts)
+            {
+                GameObject levelPartGO = Instantiate(lvlD.PrefabGO,_levelBuilder.transform);
+                levelPartGO.transform.position = lvlD.Position;
+                levelPartGO.transform.rotation = lvlD.Rotation;
+                levelPartGO.transform.localScale = lvlD.Scale;
+                PrefabUtility.ConvertToPrefabInstance(levelPartGO,lvlD.PrefabGO,new ConvertToPrefabInstanceSettings(), InteractionMode.UserAction);
+            }
+
+            _levelBuilder.LevelName = _levelBuilder.LevelDataSO.LevelName;
+        }
+        if (GUILayout.Button("Delete LevelData")) 
+        { 
+            LevelPart[] allGoInChildren = _levelBuilder.GetComponentsInChildren<LevelPart>();
+            if (allGoInChildren.Length == 0) return;
+
+            foreach (LevelPart levelPart in allGoInChildren)
+            {
+                DestroyImmediate(levelPart.gameObject);
+            }
+
+        }
     }
 }
 #endif

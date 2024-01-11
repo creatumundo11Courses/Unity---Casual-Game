@@ -14,11 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelName: Guardado
   _levelParts:
+  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
+    Position: {x: -2, y: 0, z: 0}
+    Rotation: {x: -0.3849096, y: -0, z: -0, w: 0.9229543}
+    Scale: {x: 12, y: 1, z: 60}
+  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
+    Position: {x: 28.3, y: -0.7, z: -0.7}
+    Rotation: {x: -0.3849096, y: -0, z: -0, w: 0.9229543}
+    Scale: {x: 12, y: 1, z: 60}
+  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
+    Position: {x: 2.8, y: 0, z: 114.7}
+    Rotation: {x: -0, y: -0, z: 0.2356662, w: 0.97183406}
+    Scale: {x: 12, y: 1, z: 60}
+  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
+    Position: {x: -3.9, y: 13, z: 114.7}
+    Rotation: {x: -0, y: -0, z: 0.2356662, w: 0.97183406}
+    Scale: {x: 12, y: 1, z: 60}
   - PrefabGO: {fileID: 7792537341444715205, guid: dab4560750d34fe4cbeaca294619c523, type: 3}
-    Position: {x: 0, y: 0, z: 0}
+    Position: {x: 0, y: 9, z: 0}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
     Scale: {x: 1, y: 1, z: 1}
-  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
-    Position: {x: 0, y: 0, z: 0}
+  - PrefabGO: {fileID: 7792537341444715205, guid: dab4560750d34fe4cbeaca294619c523, type: 3}
+    Position: {x: -23.6, y: 9, z: 23.9}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
-    Scale: {x: 12, y: 1, z: 60}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 7792537341444715205, guid: dab4560750d34fe4cbeaca294619c523, type: 3}
+    Position: {x: 0, y: 0, z: 60.25}
+    Rotation: {x: -0, y: 0.31849065, z: -0, w: 0.94792604}
+    Scale: {x: 1, y: 1, z: 1}
