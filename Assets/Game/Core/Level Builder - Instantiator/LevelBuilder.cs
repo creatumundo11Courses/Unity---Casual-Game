@@ -18,6 +18,7 @@ public class LevelBuilder : MonoBehaviour
         if (LevelDataSO == null) return;
 
         LevelDataSO.LevelParts.Clear();
+        LevelDataSO.MultiplierCollisionablesData.Clear();
     }
 
     internal void AddLevelPart(LevelData newLD)
@@ -57,6 +58,12 @@ public class LevelBuilderEditor : Editor
                 GameObject originalGO = PrefabUtility.GetCorrespondingObjectFromOriginalSource(referenceGO);
                 LevelData newLD = new LevelData() { PrefabGO = originalGO, Position = referenceGO.transform.position, Rotation = referenceGO.transform.rotation, Scale = referenceGO.transform.localScale };
                 _levelBuilder.AddLevelPart(newLD);
+
+                if (referenceGO.TryGetComponent(out CollisionableMultiplierContent collisionableMultiplier))
+                {
+                    ProcessCollisionableMultiplierContent(collisionableMultiplier);
+                }
+
             }
 
             _levelBuilder.SetLevelName(_levelBuilder.LevelName);
@@ -91,6 +98,22 @@ public class LevelBuilderEditor : Editor
             }
 
         }
+    }
+
+    private void ProcessCollisionableMultiplierContent(CollisionableMultiplierContent collisionableMultiplier)
+    {
+        if (collisionableMultiplier == null) return;
+
+        if (_levelBuilder.LevelDataSO.MultiplierCollisionablesData == null)
+        {
+            _levelBuilder.LevelDataSO.MultiplierCollisionablesData = new();
+        }
+
+        CollisionableMultiplierData collisionableMultiplierData = new CollisionableMultiplierData();
+
+        collisionableMultiplierData.CollisionableConfigurations = new CollisionableMultiplierData.CollisionableConfiguration[collisionableMultiplier.CollisionableMultipliers.Length];
+
+        _levelBuilder.LevelDataSO.MultiplierCollisionablesData.Add(collisionableMultiplierData);
     }
 }
 #endif

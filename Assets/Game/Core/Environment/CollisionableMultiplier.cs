@@ -23,10 +23,6 @@ public class CollisionableMultiplier : MonoBehaviour
 
     public event Action<CollisionableMultiplier, Collider> OnTriggerEnter;
 
-    private void Start()
-    {
-        Initialize();
-    }
     public void Initialize()
     {
         _collision = GetComponent<CollisionableEvent>();

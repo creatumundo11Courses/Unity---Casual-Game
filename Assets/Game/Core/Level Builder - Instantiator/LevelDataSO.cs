@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(menuName = "Course/Level Data",fileName = "new Level Data")]
+[CreateAssetMenu(menuName = "Course/Level Data", fileName = "new Level Data")]
 public class LevelDataSO : ScriptableObject
 {
     [SerializeField]
@@ -11,7 +11,13 @@ public class LevelDataSO : ScriptableObject
     [SerializeField]
     private List<LevelData> _levelParts = new List<LevelData>();
     public List<LevelData> LevelParts { get => _levelParts; set => _levelParts = value; }
-    
+    [SerializeField]
+    private List<CollisionableMultiplierData> _multiplierCollisionablesData = new List<CollisionableMultiplierData>();
+    public List<CollisionableMultiplierData> MultiplierCollisionablesData { get => _multiplierCollisionablesData; set => _multiplierCollisionablesData = value; }
+
+
+
+
 }
 [Serializable]
 public class LevelData
@@ -20,4 +26,17 @@ public class LevelData
     public Vector3 Position;
     public Quaternion Rotation;
     public Vector3 Scale;
+}
+
+[Serializable]
+public class CollisionableMultiplierData
+{
+    [Serializable]
+    public struct CollisionableConfiguration
+    {
+        public int Multiplier;
+        public OperationType OperationType;
+    }
+
+    public CollisionableConfiguration[] CollisionableConfigurations;
 }

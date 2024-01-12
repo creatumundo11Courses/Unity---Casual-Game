@@ -7,8 +7,11 @@ public class CollisionableMultiplierContent : MonoBehaviour
 {
     [SerializeField]
     private CollisionableMultiplier[] _collisionableMultipliers;
+    public CollisionableMultiplier[] CollisionableMultipliers { get => _collisionableMultipliers; set => _collisionableMultipliers = value; }
 
     private bool _isColliding = false;
+
+    
 
     private void Start()
     {
@@ -39,5 +42,12 @@ public class CollisionableMultiplierContent : MonoBehaviour
             int numberInstantiation = collisionableMultiplier.GetOperationResult(currentValue);
             multiplicable.Generate(numberInstantiation, collider.transform);
         }
+    }
+    public void SetOperationToCollisionableMultiplier(int multiplier, OperationType operationType, int i)
+    {
+        _collisionableMultipliers[i].Initialize();
+        _collisionableMultipliers[i].SetMultiplier(multiplier);
+        _collisionableMultipliers[i].SetOperationType(operationType);
+
     }
 }
