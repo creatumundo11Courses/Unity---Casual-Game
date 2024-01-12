@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class CharacterControllerIA : CharacterControllerBase
     public Transform Target;
     [SerializeField]
     private float _damageValue;
+
+    public event Action<CharacterControllerIA> OnCharacterDead;
 
     public override void OnInitialize()
     {
@@ -37,5 +40,7 @@ public class CharacterControllerIA : CharacterControllerBase
     {
         base.Dead();
         gameObject.SetActive(false);
+        OnCharacterDead?.Invoke(this);
+        Destroy(gameObject);
     }
 }

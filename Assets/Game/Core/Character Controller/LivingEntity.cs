@@ -33,7 +33,7 @@ public class LivingEntity : MonoBehaviour
 
     protected virtual void Dead() 
     {
-       OnDead.Invoke(this);
+       OnDead?.Invoke(this);
     }
     
 }

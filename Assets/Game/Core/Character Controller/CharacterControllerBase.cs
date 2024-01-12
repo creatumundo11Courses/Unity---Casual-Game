@@ -44,6 +44,6 @@ public abstract class CharacterControllerBase : LivingEntity
     }
     protected override void Dead()
     {
-        
+        base.Dead();
     }
 }
