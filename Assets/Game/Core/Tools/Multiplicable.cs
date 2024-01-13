@@ -10,6 +10,7 @@ public class Multiplicable: MonoBehaviour
     private List<GameObject> _multiplicables = new List<GameObject>();
 
     public event Action<GameObject> OnCreate;
+    public event Action OnCreateDone;
     public event Action<GameObject> OnDestroy;
 
     public int GetCount()
@@ -24,6 +25,8 @@ public class Multiplicable: MonoBehaviour
             _multiplicables.Add(instanceGO);
             OnCreate?.Invoke(instanceGO);
         }
+
+        OnCreateDone?.Invoke();
     }
 
     public void Remove(int quantity)

@@ -13,7 +13,7 @@ public abstract class CharacterControllerBase : LivingEntity
     [SerializeField]
     protected float _radius;
 
-    private Vector3 _desiredMovementV;
+    protected Vector3 _desiredMovementV;
 
 
     public override void Start()

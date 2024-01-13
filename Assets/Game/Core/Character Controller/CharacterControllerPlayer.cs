@@ -10,12 +10,43 @@ public class CharacterControllerPlayer : CharacterControllerBase
     private InputListenerSO _inputListener;
     [SerializeField]
     private Multiplicable _multiplicable;
+    [SerializeField]
+    private CircleLayout _circleLayout;
+    [SerializeField]
+    private LayerMask _limitMask;
+    [SerializeField]
+    private bool autoForwardMovement;
 
     private void Awake()
     {
         _multiplicable.OnCreate += OnCreateImpostors;
+        _multiplicable.OnCreateDone += OnCreateImpostorsDone;
         _multiplicable.OnDestroy += OnDestroyImpostors;
     }
+
+
+    public override void OnUpdate()
+    {
+        ClampMoveV(ref _desiredMovementV);
+        if (autoForwardMovement) _desiredMovementV.z = 1;
+
+        base.OnUpdate();
+    }
+
+    private void ClampMoveV(ref Vector3 desiredMovementV)
+    {
+        bool isLeftLimit = IsInLimitPointByRay(Vector3.left);
+        bool isRightLimit = IsInLimitPointByRay(Vector3.right);
+        if(isLeftLimit && desiredMovementV.x < 0) desiredMovementV.x = 0;
+        if(isRightLimit && desiredMovementV.x > 0) desiredMovementV.x = 0;
+    }
+
+    private bool IsInLimitPointByRay(Vector3 direction)
+    {
+        float radius = _circleLayout.GetRadius() == 0 ? 1f : _circleLayout.GetRadius();
+        return Physics.Raycast(transform.position, direction, radius, _limitMask);
+    }
+
     private void OnCreateImpostors(GameObject go)
     {
         CharacterControllerIA character = go.GetComponent<CharacterControllerIA>();
@@ -26,6 +57,12 @@ public class CharacterControllerPlayer : CharacterControllerBase
     {
         CharacterControllerIA character = go.GetComponent<CharacterControllerIA>();
         character.OnDead -= OnCharacterDead;
+    }
+
+
+    private void OnCreateImpostorsDone()
+    {
+        _circleLayout.Organize();
     }
 
     private void OnCharacterDead(LivingEntity entity)
@@ -54,7 +91,13 @@ public class CharacterControllerPlayer : CharacterControllerBase
     protected override void Dead()
     {
         base.Dead();
-        Debug.Log("EL personaje principal ha muerto");
+    }
+
+    public override void OnTerminate()
+    {
+        _multiplicable.OnCreate -= OnCreateImpostors;
+        _multiplicable.OnCreateDone -= OnCreateImpostorsDone;
+        _multiplicable.OnDestroy -= OnDestroyImpostors;
     }
 
 }
