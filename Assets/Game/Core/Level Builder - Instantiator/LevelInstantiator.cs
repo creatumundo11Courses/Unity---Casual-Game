@@ -86,4 +86,9 @@ public class LevelInstantiator : MonoBehaviour
         if (--_currentLevelIndex <= -1) return;
         CreateNewLevel();
     }
+
+    public void ResetLevel()
+    {
+        CreateNewLevel();
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUD : MonoBehaviour
+public class HUD : MenuBase
 {
     [SerializeField]
     private GameObject _joystick;
@@ -14,6 +14,6 @@ public class HUD : MonoBehaviour
     {
         //Configure mobile btns
         _joystick.SetActive(Application.isMobilePlatform);
-        //_homeBtn.onClick.AddListener();
+        _homeBtn.onClick.AddListener(GameMode.Instance.MainMenuGame);
     }
 }

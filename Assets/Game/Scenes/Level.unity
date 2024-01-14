@@ -1551,8 +1551,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1039202671}
-  - component: {fileID: 1039202670}
   - component: {fileID: 1039202672}
+  - component: {fileID: 1039202673}
+  - component: {fileID: 1039202670}
   m_Layer: 0
   m_Name: GameCore
   m_TagString: Untagged
@@ -1607,6 +1608,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 4904373498190364723, guid: 226945bdafabf854485f7001188e1948, type: 3}
   _spawnT: {fileID: 979760929}
+  _levelInstantiator: {fileID: 1039202670}
+  _gameMenus: {fileID: 0}
+--- !u!114 &1039202673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039202669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa585f4f1ccc67458516054514811fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hudMenu: {fileID: 750498077}
+  _mainMenu: {fileID: 1737274105}
+  _loseMenu: {fileID: 415528646}
+  _winMenu: {fileID: 1292182238}
 --- !u!1 &1292182234
 GameObject:
   m_ObjectHideFlags: 0
