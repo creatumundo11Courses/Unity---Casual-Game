@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public abstract class CharacterControllerBase : LivingEntity
 
     private void Update()
     {
+        if (GameMode.GameState != GameState.InGame) return;        
         OnUpdate();
     }
 
@@ -45,5 +47,10 @@ public abstract class CharacterControllerBase : LivingEntity
     protected override void Dead()
     {
         base.Dead();
+    }
+
+    public void Stop()
+    {
+        Move(Vector2.zero);
     }
 }

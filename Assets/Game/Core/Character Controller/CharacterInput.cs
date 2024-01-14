@@ -76,7 +76,12 @@ public class IAInput : IInput
 
     public void Update()
     {
-        if (_characterController.Target == null) return;
+        if (_characterController.Target == null)
+        {
+            _characterController.Stop();
+            return;
+        }
+
 
         Vector3 direction = (_characterController.Target.position - _characterController.transform.position).normalized;
         direction.y = 0;

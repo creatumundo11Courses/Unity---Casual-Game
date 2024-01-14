@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 
 
 #if UNITY_EDITOR
@@ -18,7 +20,6 @@ public class LevelBuilder : MonoBehaviour
         if (LevelDataSO == null) return;
 
         LevelDataSO.LevelParts.Clear();
-        LevelDataSO.MultiplierCollisionablesData.Clear();
     }
 
     internal void AddLevelPart(LevelData newLD)
@@ -48,24 +49,8 @@ public class LevelBuilderEditor : Editor
 
         if (GUILayout.Button("Save LevelData") && _levelBuilder.LevelDataSO != null) 
         {
-            _levelBuilder.ClearData();
-            LevelPart[] allGOInChildren = _levelBuilder.GetComponentsInChildren<LevelPart>();
-            if (allGOInChildren.Length == 0) return;
-
-            for (int i = 0; i < allGOInChildren.Length; i++) 
-            {
-                GameObject referenceGO = allGOInChildren[i].gameObject;
-                GameObject originalGO = PrefabUtility.GetCorrespondingObjectFromOriginalSource(referenceGO);
-                LevelData newLD = new LevelData() { PrefabGO = originalGO, Position = referenceGO.transform.position, Rotation = referenceGO.transform.rotation, Scale = referenceGO.transform.localScale };
-                _levelBuilder.AddLevelPart(newLD);
-
-                if (referenceGO.TryGetComponent(out CollisionableMultiplierContent collisionableMultiplier))
-                {
-                    ProcessCollisionableMultiplierContent(collisionableMultiplier);
-                }
-
-            }
-
+            ProcessAllGO();
+            ProcessCollisionableMultiplierContent();
             _levelBuilder.SetLevelName(_levelBuilder.LevelName);
             EditorUtility.SetDirty(_levelBuilder.LevelDataSO);
             EditorUtility.DisplayDialog("LevelBuilder", "has been successfully saved", "ok");
@@ -98,6 +83,37 @@ public class LevelBuilderEditor : Editor
             }
 
         }
+    }
+
+   
+
+    private void ProcessAllGO()
+    {
+        _levelBuilder.ClearData();
+        LevelPart[] allGOInChildren = _levelBuilder.GetComponentsInChildren<LevelPart>();
+        if (allGOInChildren.Length == 0) return;
+
+        for (int i = 0; i < allGOInChildren.Length; i++)
+        {
+            GameObject referenceGO = allGOInChildren[i].gameObject;
+            GameObject originalGO = PrefabUtility.GetCorrespondingObjectFromSource(referenceGO);
+            LevelData newLD = new LevelData() { PrefabGO = originalGO, Position = referenceGO.transform.position, Rotation = referenceGO.transform.rotation, Scale = referenceGO.transform.localScale };
+            _levelBuilder.AddLevelPart(newLD);
+        }
+    }
+
+    private void ProcessCollisionableMultiplierContent()
+    {
+        CollisionableMultiplierContent[] allGOInChildren = _levelBuilder.GetComponentsInChildren<CollisionableMultiplierContent>();
+        CollisionableMultiplierData[] collData = _levelBuilder.LevelDataSO.MultiplierCollisionablesData.ToArray();
+        if (collData.Length == allGOInChildren.Length) return;
+                             
+        for (int i = 0 ; i < allGOInChildren.Length - collData.Length; i++)
+        {
+            ProcessCollisionableMultiplierContent(allGOInChildren[i]);
+        }
+       
+
     }
 
     private void ProcessCollisionableMultiplierContent(CollisionableMultiplierContent collisionableMultiplier)

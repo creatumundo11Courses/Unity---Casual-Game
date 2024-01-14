@@ -43,4 +43,6 @@ public class CharacterControllerIA : CharacterControllerBase
         OnCharacterDead?.Invoke(this);
         Destroy(gameObject);
     }
+
+   
 }

@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 
 public class CharacterControllerPlayer : CharacterControllerBase
 {
+    private const float REPEAT_RATE_TO_ORGANIZE = 0.4f;
+    private bool _isOrganized;
+    private float _currentTimeRepeatRateToOrganize = 0;
     [SerializeField]
     private InputListenerSO _inputListener;
     [SerializeField]
@@ -31,6 +34,17 @@ public class CharacterControllerPlayer : CharacterControllerBase
         if (autoForwardMovement) _desiredMovementV.z = 1;
 
         base.OnUpdate();
+
+        if (!_isOrganized)
+        {
+            _currentTimeRepeatRateToOrganize += Time.deltaTime;
+            if (_currentTimeRepeatRateToOrganize >= REPEAT_RATE_TO_ORGANIZE)
+            {
+                _circleLayout.Organize();
+                _isOrganized = true;
+                _currentTimeRepeatRateToOrganize = 0;
+            }
+        }
     }
 
     private void ClampMoveV(ref Vector3 desiredMovementV)
@@ -68,6 +82,8 @@ public class CharacterControllerPlayer : CharacterControllerBase
     private void OnCharacterDead(LivingEntity entity)
     {
         _multiplicable.Remove(entity.gameObject);
+        _currentTimeRepeatRateToOrganize = 0;
+        _isOrganized = false;
         Damage(1);
     }
 
