@@ -145,7 +145,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1815
+    m_Bits: 1943
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 5324721183254150160}
   - component: {fileID: 5594246216748202857}
   - component: {fileID: 9103579395900396905}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ MonoBehaviour:
   _characterInput: {fileID: 9103579395900396905}
   _detectionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   _radius: 0
   _inputListener: {fileID: 11400000, guid: 1657b77f34230d04084f97c8047b54d9, type: 2}
   _multiplicable: {fileID: 5324721183254150160}

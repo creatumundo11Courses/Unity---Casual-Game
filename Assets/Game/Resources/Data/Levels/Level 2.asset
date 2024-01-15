@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a645ad76fa987544bfb077d50f876dd, type: 3}
+  m_Name: Level 2
+  m_EditorClassIdentifier: 
+  _levelName: Guardado
+  _levelParts:
+  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 12, y: 1, z: 60}
+  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
+    Position: {x: 0, y: 0, z: 60}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 12, y: 1, z: 60}
+  - PrefabGO: {fileID: 2293637556157802350, guid: 3b2a7ce78818124448dd54d694555646, type: 3}
+    Position: {x: 0, y: 0, z: 120}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 12, y: 1, z: 60}
+  - PrefabGO: {fileID: 7792537341444715205, guid: dab4560750d34fe4cbeaca294619c523, type: 3}
+    Position: {x: 0, y: 0, z: 22}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 7792537341444715205, guid: dab4560750d34fe4cbeaca294619c523, type: 3}
+    Position: {x: 0, y: 0, z: 88}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: 0, y: 1, z: 51.9}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: 0, y: 1, z: 101.9}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: -1.3, y: 1, z: 53.7}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: -1.3, y: 1, z: 103.7}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: 2.1, y: 1, z: 55.1}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: 2.1, y: 1, z: 105.1}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: 0.7, y: 1, z: 58.1}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 8139866294192403319, guid: 6b242efc1464aed4c98d202c45ed9e75, type: 3}
+    Position: {x: 0.7, y: 1, z: 108.1}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 1, y: 1, z: 1}
+  - PrefabGO: {fileID: 6116345202630351183, guid: 87efec5f93e11744383761aeb16060ff, type: 3}
+    Position: {x: 0, y: 0.21, z: 140.6}
+    Rotation: {x: -0, y: -0, z: -0, w: 1}
+    Scale: {x: 11.959921, y: 1, z: 3.54}
+  _multiplierCollisionablesData:
+  - CollisionableConfigurations:
+    - Multiplier: 5
+      OperationType: 0
+    - Multiplier: 4
+      OperationType: 0
+  - CollisionableConfigurations:
+    - Multiplier: 9
+      OperationType: 0
+    - Multiplier: 1
+      OperationType: 0

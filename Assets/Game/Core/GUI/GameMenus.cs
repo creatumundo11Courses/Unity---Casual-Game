@@ -9,7 +9,6 @@ public class GameMenus : MonoBehaviour
     public const string ID_MAIN_MENU = "MainMenu";
     public const string ID_LOSE_MENU = "LoseMenu";
     public const string ID_WIN_MENU = "WinMenu";
-
     [SerializeField]
     private HUD _hudMenu;
     [SerializeField]
@@ -31,7 +30,7 @@ public class GameMenus : MonoBehaviour
         _menus.Add(ID_WIN_MENU, _winMenu);
         HideAll();
     }
-
+    
     public void OpenMenu(string id)
     {
         if (_menus[id] == _currentMenu) return;

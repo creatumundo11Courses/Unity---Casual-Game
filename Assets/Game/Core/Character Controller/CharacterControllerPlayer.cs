@@ -16,8 +16,6 @@ public class CharacterControllerPlayer : CharacterControllerBase
     [SerializeField]
     private CircleLayout _circleLayout;
     [SerializeField]
-    private LayerMask _limitMask;
-    [SerializeField]
     private bool autoForwardMovement;
 
     private void Awake()
@@ -58,7 +56,7 @@ public class CharacterControllerPlayer : CharacterControllerBase
     private bool IsInLimitPointByRay(Vector3 direction)
     {
         float radius = _circleLayout.GetRadius() == 0 ? 1f : _circleLayout.GetRadius();
-        return Physics.Raycast(transform.position, direction, radius, _limitMask);
+        return Physics.Raycast(transform.position, direction, radius, _detectionMask);
     }
 
     private void OnCreateImpostors(GameObject go)

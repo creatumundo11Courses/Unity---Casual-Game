@@ -36,12 +36,18 @@ public class GameMode : MonoBehaviour
             Player = Instantiate(_playerPrefab, _spawnT.position, Quaternion.identity);
             _player = Player.GetComponentInChildren<CharacterControllerPlayer>();
             _player.OnDead += OnPlayerDead;
+            _gameMenus.OpenMenu(GameMenus.ID_MAIN_MENU);
+            GameState = GameState.InMenu;
+            _levelInstantiator.OnLevelChanged += OnLevelChanged;
         }
     }
 
+    
+
     private void OnPlayerDead(LivingEntity entity)
     {
-        //GameOver
+        _gameMenus.OpenMenu(GameMenus.ID_LOSE_MENU);
+        GameState = GameState.InMenu;
     }
 
     public void MainMenuGame()
@@ -68,5 +74,21 @@ public class GameMode : MonoBehaviour
     public void NextLevel()
     {
         _levelInstantiator.NextLevel();
+    }
+
+    private void OnLevelChanged()
+    {
+        if (Player == null) return;
+
+        _player.transform.position = _spawnT.position;
+        _player.GenerateDefautPlayer();
+        _player.Stop();
+    }
+
+    public void OnGoalReached()
+    {
+        _gameMenus.OpenMenu(GameMenus.ID_WIN_MENU);
+        GameState = GameState.InMenu;
+        _player.Stop();
     }
 }

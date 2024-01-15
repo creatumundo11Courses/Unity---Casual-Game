@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c271c8f2ad859e445b04350bb62ca8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _retryBtn: {fileID: 0}
+  _retryBtn: {fileID: 970171658}
 --- !u!1 &434350332
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,8 +789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19339b585ca00a24a9efeca52bd16185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joystick: {fileID: 0}
-  _homeBtn: {fileID: 0}
+  _joystick: {fileID: 1004548316}
+  _homeBtn: {fileID: 1304988877}
 --- !u!1 &774022498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,6 +1575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allLevels:
   - {fileID: 11400000, guid: e052e6511f166234ba305a8eede41534, type: 2}
+  - {fileID: 11400000, guid: 59491e7b721774b4799094a479f4e8ea, type: 2}
   _currentLevelIndex: 0
 --- !u!4 &1039202671
 Transform:
@@ -1609,7 +1610,7 @@ MonoBehaviour:
   _playerPrefab: {fileID: 4904373498190364723, guid: 226945bdafabf854485f7001188e1948, type: 3}
   _spawnT: {fileID: 979760929}
   _levelInstantiator: {fileID: 1039202670}
-  _gameMenus: {fileID: 0}
+  _gameMenus: {fileID: 1039202673}
 --- !u!114 &1039202673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1717,7 +1718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018e03ed4d5e9c74da52591c75e2ee19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextBtn: {fileID: 0}
+  _nextBtn: {fileID: 1829284721}
 --- !u!1 &1304988875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +1985,7 @@ GameObject:
   - component: {fileID: 1548073633}
   - component: {fileID: 1548073635}
   - component: {fileID: 1548073634}
+  - component: {fileID: 1548073636}
   m_Layer: 5
   m_Name: Handle
   m_TagString: Untagged
@@ -2048,6 +2050,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548073632}
   m_CullTransparentMesh: 1
+--- !u!114 &1548073636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548073632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d677f1681015749b15c436eec6d880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MovementRange: 174
+  m_DynamicOriginRange: 100
+  m_ControlPath: <Gamepad>/leftStick
+  m_Behaviour: 0
+  m_UseIsolatedInputActions: 0
+  m_PointerDownAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bba3d2eb-4379-48ec-ba1d-54721db54dde
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  m_PointerMoveAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 782fcd00-4b79-49d9-bfcb-0855f8b152f7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &1549093659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2133,7 +2170,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1606650559}
   - component: {fileID: 1606650557}
-  - component: {fileID: 1606650558}
   m_Layer: 0
   m_Name: CameraUI
   m_TagString: Untagged
@@ -2189,17 +2225,9 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
+  m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1606650558
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606650556}
-  m_Enabled: 1
 --- !u!4 &1606650559
 Transform:
   m_ObjectHideFlags: 0
@@ -2438,7 +2466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76414430c499574abe384d56468d674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playBtn: {fileID: 0}
+  _playBtn: {fileID: 1772083810}
 --- !u!1 &1772083808
 GameObject:
   m_ObjectHideFlags: 0

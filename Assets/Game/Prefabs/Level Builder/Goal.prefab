@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2112114637307114137}
   - component: {fileID: 7663301700113900669}
   - component: {fileID: 4118583090915122169}
+  - component: {fileID: 2264144923628581783}
+  - component: {fileID: 654187654396208596}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Untagged
@@ -100,12 +102,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 3.1378493, z: 0.5}
+  m_Center: {x: 0, y: 1.0689249, z: 0.23504838}
 --- !u!114 &4118583090915122169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,5 +118,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b38a811a9191c544baf7ee5eaeadb1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2264144923628581783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116345202630351183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2ebb21a66c9b748876856b51e80710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 128
+  OnCollisionEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTriggerEnterEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 654187654396208596}
+        m_TargetAssemblyTypeName: GoalArea, Assembly-CSharp
+        m_MethodName: OnGoalReached
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &654187654396208596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6116345202630351183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b009c3bfefceec24cbe447838aa67f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

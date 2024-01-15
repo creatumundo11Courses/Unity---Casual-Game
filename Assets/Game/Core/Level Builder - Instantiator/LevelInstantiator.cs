@@ -13,6 +13,9 @@ public class LevelInstantiator : MonoBehaviour
     private int _currentCollisionableIndex;
 
     private LevelPart[] _levelParts;
+
+    public event Action OnLevelChanged;
+
     private void Start()
     {
         CreateLevel(_allLevels[_currentLevelIndex]);
@@ -23,7 +26,7 @@ public class LevelInstantiator : MonoBehaviour
         if (levelDataSO == null) return;
 
         _currentLevel = levelDataSO;
-
+        _currentCollisionableIndex = 0;
         _levelParts = new LevelPart[levelDataSO.LevelParts.Count];
 
         for (int i = 0; i < levelDataSO.LevelParts.Count; i++)
@@ -60,6 +63,8 @@ public class LevelInstantiator : MonoBehaviour
 
         for (int i = 0; i < _levelParts.Length; i++)
         {
+            if(_levelParts[i] == null) continue;
+
             GameObject levelPart = _levelParts[i].gameObject;
             _levelParts[i] = null;
             Destroy(levelPart);
@@ -72,7 +77,9 @@ public class LevelInstantiator : MonoBehaviour
     private void CreateNewLevel()
     {
         DestroyLevel();
+        OnLevelChanged?.Invoke();
         CreateLevel(_allLevels[_currentLevelIndex]);
+       
     }
 
     public void NextLevel()

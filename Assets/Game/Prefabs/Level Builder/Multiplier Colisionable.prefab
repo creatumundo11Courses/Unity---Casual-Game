@@ -293,7 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   OnCollisionEnterEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -437,7 +437,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   OnCollisionEnterEvent:
     m_PersistentCalls:
       m_Calls: []
