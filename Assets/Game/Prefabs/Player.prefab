@@ -281,9 +281,6 @@ MonoBehaviour:
   _inputListener: {fileID: 11400000, guid: 1657b77f34230d04084f97c8047b54d9, type: 2}
   _multiplicable: {fileID: 5324721183254150160}
   _circleLayout: {fileID: 9108655635417369613}
-  _limitMask:
-    serializedVersion: 2
-    m_Bits: 1024
   autoForwardMovement: 1
 --- !u!54 &4404266612396202339
 Rigidbody:
@@ -351,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492f82372301ef842be52e6a1d3e48dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forwardSpeed: 20
+  _forwardSpeed: 10
   _horizontalSpeed: 10
 --- !u!114 &9103579395900396905
 MonoBehaviour:

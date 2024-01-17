@@ -90,5 +90,6 @@ public class GameMode : MonoBehaviour
         _gameMenus.OpenMenu(GameMenus.ID_WIN_MENU);
         GameState = GameState.InMenu;
         _player.Stop();
+
     }
 }

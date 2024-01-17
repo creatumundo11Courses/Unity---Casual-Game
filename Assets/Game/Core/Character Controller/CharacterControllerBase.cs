@@ -15,6 +15,7 @@ public abstract class CharacterControllerBase : LivingEntity
     protected float _radius;
 
     protected Vector3 _desiredMovementV;
+    public event Action<float> OnMove;
 
 
     public override void Start()
@@ -37,6 +38,7 @@ public abstract class CharacterControllerBase : LivingEntity
     public virtual void OnUpdate() 
     {
         _characterMove.Move(_desiredMovementV);
+        OnMove?.Invoke(_desiredMovementV.sqrMagnitude);
     }
     public virtual void OnTerminate() { }
 
@@ -52,5 +54,6 @@ public abstract class CharacterControllerBase : LivingEntity
     public void Stop()
     {
         Move(Vector2.zero);
+        OnMove?.Invoke(_desiredMovementV.sqrMagnitude);
     }
 }

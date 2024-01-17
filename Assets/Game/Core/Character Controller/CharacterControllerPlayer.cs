@@ -62,12 +62,20 @@ public class CharacterControllerPlayer : CharacterControllerBase
     private void OnCreateImpostors(GameObject go)
     {
         CharacterControllerIA character = go.GetComponent<CharacterControllerIA>();
+        if (character.TryGetComponent(out CharacterAnimations chAnim))
+        {
+            chAnim.SetController(this);
+        }
         character.OnDead += OnCharacterDead;
         _health = _multiplicable.GetCount();
     }
     private void OnDestroyImpostors(GameObject go)
     {
         CharacterControllerIA character = go.GetComponent<CharacterControllerIA>();
+        if (character.TryGetComponent(out CharacterAnimations chAnim))
+        {
+            chAnim.RemoveController();
+        }
         character.OnDead -= OnCharacterDead;
     }
 
