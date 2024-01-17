@@ -21,6 +21,8 @@ public class GameMenus : MonoBehaviour
     private Dictionary<string, MenuBase> _menus = new();
 
     private MenuBase _currentMenu;
+    [SerializeField]
+    public AudioClip _btnSound;
 
     private void Awake()
     {
@@ -51,5 +53,10 @@ public class GameMenus : MonoBehaviour
         {
             menu.Value.Hide();
         }
+    }
+    //Called in inspector Buttons
+    public void PlayOnClickSound()
+    {
+        GameAudio.PlayEffectAudio(_btnSound, 0.5f);
     }
 }

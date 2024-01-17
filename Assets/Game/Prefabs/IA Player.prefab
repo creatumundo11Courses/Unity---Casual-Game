@@ -61,6 +61,7 @@ MonoBehaviour:
   _radius: 5
   Target: {fileID: 0}
   _damageValue: 10
+  _deadSFX: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
 --- !u!114 &1899187792355948738
 MonoBehaviour:
   m_ObjectHideFlags: 0

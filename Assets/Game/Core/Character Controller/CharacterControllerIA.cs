@@ -9,6 +9,9 @@ public class CharacterControllerIA : CharacterControllerBase
     public Transform Target;
     [SerializeField]
     private float _damageValue;
+    [SerializeField]
+    private AudioClip _deadSFX;
+
     public override void OnInitialize()
     {
         IInput inputInstance = new IAInput(this);
@@ -37,6 +40,7 @@ public class CharacterControllerIA : CharacterControllerBase
     {
         base.Dead();
         gameObject.SetActive(false);
+        GameAudio.PlayEffectAudio(_deadSFX,0.2f);
         Destroy(gameObject);
     }
 

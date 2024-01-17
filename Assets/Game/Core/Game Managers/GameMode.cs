@@ -25,6 +25,13 @@ public class GameMode : MonoBehaviour
     [SerializeField]
     private GameMenus _gameMenus;
 
+    [SerializeField]
+    private AudioClip _ambientSound;
+    [SerializeField]
+    private AudioClip _winSound;
+    [SerializeField]
+    private AudioClip _loseSound;
+
     private void Awake()
     {
         Instance = this;
@@ -39,16 +46,8 @@ public class GameMode : MonoBehaviour
             _gameMenus.OpenMenu(GameMenus.ID_MAIN_MENU);
             GameState = GameState.InMenu;
             _levelInstantiator.OnLevelChanged += OnLevelChanged;
-
+            
         }
-    }
-
-    
-
-    private void OnPlayerDead(LivingEntity entity)
-    {
-        _gameMenus.OpenMenu(GameMenus.ID_LOSE_MENU);
-        GameState = GameState.InMenu;
     }
 
     public void MainMenuGame()
@@ -80,17 +79,31 @@ public class GameMode : MonoBehaviour
     private void OnLevelChanged()
     {
         if (Player == null) return;
-
+        GameAudio.StopAllSounds();
         _player.transform.position = _spawnT.position;
         _player.GenerateDefautPlayer();
         _player.Stop();
+        GameAudio.PlayAmbienceAudio(_ambientSound, 0.1f, true);
     }
 
     public void OnGoalReached()
     {
+        GameAudio.StopAllSounds();
         _gameMenus.OpenMenu(GameMenus.ID_WIN_MENU);
         GameState = GameState.InMenu;
         _player.Stop();
+        GameAudio.PlayEffectAudio(_winSound);
 
     }
+
+
+    private void OnPlayerDead(LivingEntity entity)
+    {
+        GameAudio.StopAllSounds();
+        _gameMenus.OpenMenu(GameMenus.ID_LOSE_MENU);
+        GameState = GameState.InMenu;
+        GameAudio.PlayEffectAudio(_loseSound);
+
+    }
+
 }

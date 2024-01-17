@@ -728,6 +728,7 @@ MonoBehaviour:
   _collisionableMultipliers:
   - {fileID: 4370104623053931905}
   - {fileID: 5081331732339751129}
+  _isCollidingSound: {fileID: 8300000, guid: 89e6bc608da7b47d4914f3d9c2484e48, type: 3}
 --- !u!114 &1952196865842991685
 MonoBehaviour:
   m_ObjectHideFlags: 0

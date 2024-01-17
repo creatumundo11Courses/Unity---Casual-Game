@@ -10,8 +10,11 @@ public class CollisionableMultiplierContent : MonoBehaviour
     public CollisionableMultiplier[] CollisionableMultipliers { get => _collisionableMultipliers; set => _collisionableMultipliers = value; }
 
     private bool _isColliding = false;
+    [SerializeField]
+    private AudioClip _isCollidingSound;
 
-    
+
+
 
     private void Start()
     {
@@ -41,6 +44,7 @@ public class CollisionableMultiplierContent : MonoBehaviour
             int currentValue = multiplicable.GetCount();
             int numberInstantiation = collisionableMultiplier.GetOperationResult(currentValue);
             multiplicable.Generate(numberInstantiation, collider.transform);
+            GameAudio.PlayEffectAudio(_isCollidingSound,0.4f);
         }
     }
     public void SetOperationToCollisionableMultiplier(int multiplier, OperationType operationType, int i)

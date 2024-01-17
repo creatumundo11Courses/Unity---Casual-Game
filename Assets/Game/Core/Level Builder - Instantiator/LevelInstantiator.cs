@@ -18,7 +18,7 @@ public class LevelInstantiator : MonoBehaviour
 
     private void Start()
     {
-        CreateLevel(_allLevels[_currentLevelIndex]);
+        CreateNewLevel();
     }
 
     private void CreateLevel(LevelDataSO levelDataSO)
