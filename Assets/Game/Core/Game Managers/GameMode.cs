@@ -39,6 +39,7 @@ public class GameMode : MonoBehaviour
             _gameMenus.OpenMenu(GameMenus.ID_MAIN_MENU);
             GameState = GameState.InMenu;
             _levelInstantiator.OnLevelChanged += OnLevelChanged;
+
         }
     }
 
