@@ -5,8 +5,14 @@ using UnityEngine;
 
 public class AdsManager : MonoBehaviour
 {
-    private string _appKey = string.Empty;
+    public static AdsManager Instance;
+    private string _appKey = "1d3e2f05d";
+    [SerializeField]
+    private bool _showBannerStart;
 
+    private bool _isInterstitialTimerPassed = false;
+    private float _interstitialTimer;
+    private float _minDelayBetweenInterstitial = 30.0f;
     private void OnEnable()
     {
         IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
@@ -27,12 +33,26 @@ public class AdsManager : MonoBehaviour
         TerminateBannerVideo();
     }
 
-  
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         IronSource.Agent.validateIntegration();
-
         IronSource.Agent.init(_appKey);
+
+        if(_showBannerStart)
+            LoadBanner();
+
+        _interstitialTimer = _minDelayBetweenInterstitial;
+    }
+    private void Update()
+    {
+        if (!_isInterstitialTimerPassed && Time.time > _interstitialTimer)
+        {
+            _isInterstitialTimerPassed = true;
+        }
     }
     void OnApplicationPause(bool isPaused)
     {
@@ -43,14 +63,16 @@ public class AdsManager : MonoBehaviour
 
     #region Reward
 
-    private void ShowReward()
-    {
-        IronSource.Agent.showRewardedVideo();
-    }
-
     public void ShowRewardVideo()
     {
-        IronSource.Agent.loadRewardedVideo();
+        if (IronSource.Agent.isRewardedVideoAvailable())
+        {
+            IronSource.Agent.showRewardedVideo();
+        }
+        else
+        {
+            Debug.Log("unity-script: IronSource.Agent.isRewardedVideoAvailable - False");
+        }
     }
     private void InitializeRewardedVideo()
     {
@@ -80,7 +102,6 @@ public class AdsManager : MonoBehaviour
     // This replaces the RewardedVideoAvailabilityChangedEvent(true) event
     void RewardedVideoOnAdAvailable(IronSourceAdInfo adInfo)
     {
-        ShowReward();
     }
     // Indicates that no ads are available to be displayed
     // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
@@ -100,6 +121,7 @@ public class AdsManager : MonoBehaviour
     // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo)
     {
+        GameMode.Instance.Grant30Characters();
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo)
@@ -124,7 +146,13 @@ public class AdsManager : MonoBehaviour
     }
     public void ShowInterstitialVideo()
     {
-        IronSource.Agent.loadInterstitial();
+        if (_isInterstitialTimerPassed)
+        {
+            IronSource.Agent.loadInterstitial();
+            _isInterstitialTimerPassed = false;
+            _interstitialTimer = Time.time + _minDelayBetweenInterstitial;
+        }
+
     }
     private void InitializeInterstitialVideo()
     {

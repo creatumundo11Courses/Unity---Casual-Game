@@ -83,6 +83,9 @@ public class GameMode : MonoBehaviour
         _player.transform.position = _spawnT.position;
         _player.GenerateDefautPlayer();
         _player.Stop();
+#if COURSE_SERVICES_ADS
+        AdsManager.Instance.ShowInterstitialVideo();
+#endif
         GameAudio.PlayAmbienceAudio(_ambientSound, 0.1f, true);
     }
 
@@ -105,5 +108,21 @@ public class GameMode : MonoBehaviour
         GameAudio.PlayEffectAudio(_loseSound);
 
     }
+#if COURSE_SERVICES_ADS
+    public void Grant30Characters()
+    {
+        Multiplicable multiplicable = _player.GetComponent<Multiplicable>();
+        multiplicable.Generate(30, _player.transform);
+        GameAudio.StopAllSounds();
+        _gameMenus.OpenMenu(GameMenus.ID_HUD_MENU);
+        GameState = GameState.InGame;
+        GameAudio.PlayAmbienceAudio(_ambientSound,0.1f,true);
+    }
 
+    public void ShopGame()
+    {
+        _gameMenus.OpenMenu(GameMenus.ID_SHOP_MENU);
+        GameState = GameState.InMenu;
+    }
+#endif
 }

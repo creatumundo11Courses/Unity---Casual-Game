@@ -21,7 +21,8 @@ public class CharacterInput : MonoBehaviour
 
     private void OnDestroy()
     {
-        _input.Terminate();
+        if (_input != null)
+            _input.Terminate();
     }
 }
 
