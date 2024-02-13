@@ -125,12 +125,15 @@ public class GameMode : MonoBehaviour
         GameAudio.PlayAmbienceAudio(_ambientSound,0.1f,true);
     }
 
+#endif
+
+#if COURSE_SERVICES_IAP
     public void ShopGame()
     {
         _gameMenus.OpenMenu(GameMenus.ID_SHOP_MENU);
         GameState = GameState.InMenu;
     }
-
+#endif
     public void AddCoins(int count)
     {
         Coins += count;
@@ -138,5 +141,14 @@ public class GameMode : MonoBehaviour
         PlayerPrefs.Save();
         OnCoinsChange?.Invoke(Coins);
     }
-#endif
+    public void RemoveCoins(int count)
+    {
+        if (count > Coins) return;
+
+        Coins -= count;
+        PlayerPrefs.SetInt(KEY_PP_COINS, Coins);
+        PlayerPrefs.Save();
+        OnCoinsChange?.Invoke(Coins);
+    }
+
 }

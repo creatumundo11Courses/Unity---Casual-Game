@@ -31,6 +31,11 @@ public class CharacterAnimations : MonoBehaviour
         _controller.OnMove += OnMoveAnimation;
     }
 
+    public void SetAnimatorTarget(Animator animatorTarget)
+    {
+        _animatorTarget = animatorTarget;
+    }
+
     private void OnMoveAnimation(float vMagnitude)
     {
         if (_controller == null) return;
