@@ -67,6 +67,12 @@ public class IAPManager : MonoBehaviour, IDetailedStoreListener
     {
         _controller = controller;
         _extensions = extensions;
+
+        Product product = _controller.products.WithID(_noAdsProduct.Id);
+        if (product != null && product.transactionID != null  && product.hasReceipt)
+        {
+            AdsManager.Instance.DisableAds();
+        }
     }
     public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
     {
@@ -82,6 +88,10 @@ public class IAPManager : MonoBehaviour, IDetailedStoreListener
     {
         
     }
+    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    {
+
+    }
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
     {
@@ -89,15 +99,15 @@ public class IAPManager : MonoBehaviour, IDetailedStoreListener
 
         if (product.definition.id == _200CoinsProduct.Id)
         {
-            //add 200 coins to player
+            GameMode.Instance.AddCoins(200);
         }
         else if (product.definition.id == _1000CoinsProduct.Id)
         {
-            //add 1000 coins to player
+            GameMode.Instance.AddCoins(1000);
         }
         else if (product.definition.id == _noAdsProduct.Id)
         {
-            //No ads
+            AdsManager.Instance.DisableAds();
         }
 
         Debug.Log($"Purchase Complete {product.definition.id}");
@@ -105,10 +115,27 @@ public class IAPManager : MonoBehaviour, IDetailedStoreListener
 
     }
 
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    public string GetAdsPrice()
     {
-       
+        return GetProduct(_noAdsProduct.Id).metadata.localizedPriceString;
     }
+    public string Get200CoinsPrice()
+    {
+        return GetProduct(_200CoinsProduct.Id).metadata.localizedPriceString;
+    }
+    public string Get1000CoinsPrice()
+    {
+        return GetProduct(_1000CoinsProduct.Id).metadata.localizedPriceString;
+    }
+
+    private Product GetProduct(string id)
+    {
+        return _controller.products.WithID(id);
+    }
+
+
+
+    
 
    
 }

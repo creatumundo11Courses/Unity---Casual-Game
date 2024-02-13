@@ -20,6 +20,10 @@ public class GameMode : MonoBehaviour
     [SerializeField]
     private Transform _spawnT;
 
+    public static int Coins;
+    public const string KEY_PP_COINS = "Coins";
+    public event Action<int> OnCoinsChange;
+
     [SerializeField]
     private LevelInstantiator _levelInstantiator;
     [SerializeField]
@@ -46,6 +50,8 @@ public class GameMode : MonoBehaviour
             _gameMenus.OpenMenu(GameMenus.ID_MAIN_MENU);
             GameState = GameState.InMenu;
             _levelInstantiator.OnLevelChanged += OnLevelChanged;
+            int coins = PlayerPrefs.GetInt(KEY_PP_COINS, 0);
+            AddCoins(coins);
             
         }
     }
@@ -123,6 +129,14 @@ public class GameMode : MonoBehaviour
     {
         _gameMenus.OpenMenu(GameMenus.ID_SHOP_MENU);
         GameState = GameState.InMenu;
+    }
+
+    public void AddCoins(int count)
+    {
+        Coins += count;
+        PlayerPrefs.SetInt(KEY_PP_COINS, Coins);
+        PlayerPrefs.Save();
+        OnCoinsChange?.Invoke(Coins);
     }
 #endif
 }

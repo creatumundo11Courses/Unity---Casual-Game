@@ -12,7 +12,7 @@ public class LoseMenu : MenuBase
 
     private void OnEnable()
     {
-        _rewardBtn.interactable = true;
+        _rewardBtn.interactable = AdsManager.Instance.IsAdsEnabled;
     }
     void Start()
     {

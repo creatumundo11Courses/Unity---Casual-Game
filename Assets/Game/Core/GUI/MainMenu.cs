@@ -8,18 +8,16 @@ public class MainMenu : MenuBase
     [SerializeField]
     private Button _playBtn;
     [SerializeField]
-    private Button _noAdsBtn;
-    [SerializeField]
     private Button _shopBtn;
 
     private void Start()
     {
         _playBtn.onClick.AddListener(GameMode.Instance.StartGame);
-        _shopBtn.onClick.AddListener(GameMode.Instance.ShopGame);
+
 #if COURSE_SERVICES_ADS && COURSE_SERVICES_IAP
-     _noAdsBtn.onClick.AddListener(IAPManager.Instance.Buy("NoAds"));
+        _shopBtn.onClick.AddListener(GameMode.Instance.ShopGame);
 #else
-     _noAdsBtn.gameObject.SetActive(false);
+        _shopBtn.gameObject.SetActive(false); 
 #endif
     }
 }

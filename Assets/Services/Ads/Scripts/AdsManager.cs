@@ -13,6 +13,25 @@ public class AdsManager : MonoBehaviour
     private bool _isInterstitialTimerPassed = false;
     private float _interstitialTimer;
     private float _minDelayBetweenInterstitial = 30.0f;
+
+    private bool _isAdsEnabled;
+    public const string KEY_PP_ADS = "ADS";
+
+    public bool IsAdsEnabled     
+    { 
+       get => _isAdsEnabled;
+
+       private set 
+       { 
+         _isAdsEnabled = value;
+         if (!_isAdsEnabled)
+         {
+            DestroyBanner();
+         }
+         OnAdsEnabledChanged?.Invoke(_isAdsEnabled);
+       }
+    }
+    public event Action<bool> OnAdsEnabledChanged;
     private void OnEnable()
     {
         IronSourceEvents.onSdkInitializationCompletedEvent += SdkInitializationCompletedEvent;
@@ -39,10 +58,12 @@ public class AdsManager : MonoBehaviour
     }
     private void Start()
     {
+        IsAdsEnabled = PlayerPrefs.GetInt(KEY_PP_ADS, 1) == 1; // 1 active : 0 inactive
+        if (!IsAdsEnabled) return;
+
         IronSource.Agent.validateIntegration();
         IronSource.Agent.init(_appKey);
-
-        if(_showBannerStart)
+        if (_showBannerStart)
             LoadBanner();
 
         _interstitialTimer = _minDelayBetweenInterstitial;
@@ -65,6 +86,8 @@ public class AdsManager : MonoBehaviour
 
     public void ShowRewardVideo()
     {
+        if (!IsAdsEnabled) return;
+
         if (IronSource.Agent.isRewardedVideoAvailable())
         {
             IronSource.Agent.showRewardedVideo();
@@ -146,6 +169,8 @@ public class AdsManager : MonoBehaviour
     }
     public void ShowInterstitialVideo()
     {
+        if (!IsAdsEnabled) return;
+
         if (_isInterstitialTimerPassed)
         {
             IronSource.Agent.loadInterstitial();
@@ -216,6 +241,8 @@ public class AdsManager : MonoBehaviour
 
     public void LoadBanner()
     {
+        if (!IsAdsEnabled) return;
+
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER,IronSourceBannerPosition.BOTTOM);
     }
 
@@ -269,6 +296,20 @@ public class AdsManager : MonoBehaviour
     //Invoked when the user leaves the app
     void BannerOnAdLeftApplicationEvent(IronSourceAdInfo adInfo)
     {
+    }
+
+    public void DisableAds()
+    {
+        IsAdsEnabled = false;
+        PlayerPrefs.SetInt(KEY_PP_ADS,0);
+        PlayerPrefs.Save();
+    }
+
+    public void EnableAds()
+    {
+        IsAdsEnabled = true;
+        PlayerPrefs.SetInt(KEY_PP_ADS, 1);
+        PlayerPrefs.Save();
     }
 
 
