@@ -8,8 +8,8 @@ public class LevelInstantiator : MonoBehaviour
     private LevelDataSO _currentLevel;
     [SerializeField]
     private List<LevelDataSO> _allLevels;
-    [SerializeField]
-    private int _currentLevelIndex;
+    
+    public int CurrentLevelIndex;
     private int _currentCollisionableIndex;
 
     private LevelPart[] _levelParts;
@@ -78,19 +78,19 @@ public class LevelInstantiator : MonoBehaviour
     {
         DestroyLevel();
         OnLevelChanged?.Invoke();
-        CreateLevel(_allLevels[_currentLevelIndex]);
+        CreateLevel(_allLevels[CurrentLevelIndex]);
        
     }
 
     public void NextLevel()
     {
-        if (++_currentLevelIndex == _allLevels.Count) return;
+        if (++CurrentLevelIndex == _allLevels.Count) return;
         CreateNewLevel();
     }
 
     public void PrevLevel()
     {
-        if (--_currentLevelIndex <= -1) return;
+        if (--CurrentLevelIndex <= -1) return;
         CreateNewLevel();
     }
 

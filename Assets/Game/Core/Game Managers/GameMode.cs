@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Services.Analytics;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public enum GameState
 {
@@ -52,7 +54,7 @@ public class GameMode : MonoBehaviour
             _levelInstantiator.OnLevelChanged += OnLevelChanged;
             int coins = PlayerPrefs.GetInt(KEY_PP_COINS, 0);
             AddCoins(coins);
-            
+
         }
     }
 
@@ -99,6 +101,13 @@ public class GameMode : MonoBehaviour
     {
         GameAudio.StopAllSounds();
         _gameMenus.OpenMenu(GameMenus.ID_WIN_MENU);
+#if COURSE_SERVICES_ANALYTICS
+        CustomEvent myEvent = new CustomEvent("levelWin")
+{
+    { "userLevel", _levelInstantiator.CurrentLevelIndex }
+};
+        AnalyticsService.Instance.RecordEvent(myEvent);
+#endif
         GameState = GameState.InMenu;
         _player.Stop();
         GameAudio.PlayEffectAudio(_winSound);
@@ -111,6 +120,16 @@ public class GameMode : MonoBehaviour
         GameAudio.StopAllSounds();
         _gameMenus.OpenMenu(GameMenus.ID_LOSE_MENU);
         GameState = GameState.InMenu;
+#if COURSE_SERVICES_ANALYTICS
+        CustomEvent myEvent = new CustomEvent("levelDied")
+{
+    { "userLevel", _levelInstantiator.CurrentLevelIndex },
+    { "area", Mathf.FloorToInt(_player.transform.position.z / 60) }
+};
+        AnalyticsService.Instance.RecordEvent(myEvent);
+        
+
+#endif
         GameAudio.PlayEffectAudio(_loseSound);
 
     }
@@ -122,7 +141,7 @@ public class GameMode : MonoBehaviour
         GameAudio.StopAllSounds();
         _gameMenus.OpenMenu(GameMenus.ID_HUD_MENU);
         GameState = GameState.InGame;
-        GameAudio.PlayAmbienceAudio(_ambientSound,0.1f,true);
+        GameAudio.PlayAmbienceAudio(_ambientSound, 0.1f, true);
     }
 
 #endif

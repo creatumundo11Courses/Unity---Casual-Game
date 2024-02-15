@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[DefaultExecutionOrder(-9999)]
 public class AdsManager : MonoBehaviour
 {
     public static AdsManager Instance;
